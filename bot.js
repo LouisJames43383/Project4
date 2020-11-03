@@ -4,9 +4,10 @@ var Twit = require('twit');
 // We need to include our configuration file
 var T = new Twit(require('./config.js'));
 
-// This is the URL of a search for the latest tweets on the '#mediaarts' hashtag.
+// This is the URL of a search for the latest tweets on the '#mediaarts' hashtag '#tenet' hashtag, and 'thwg' hashtag.
 var mediaArtsSearch = {q: "#mediaarts", count: 10, result_type: "recent"}; 
 var tenetSearch = {q: "#tenet", count: 10, result_type: "recent"}; 
+var thwgSearch = {q: "#thwg", count: 10, result_type: "recent"};
 
 // This function finds the latest tweet with the #mediaarts hashtag, and retweets it.
 function retweetLatest() {
@@ -37,19 +38,44 @@ function retweetLatest() {
 			}
 			// If there was an error with our Twitter call, we print it out here.
 			if (error) {
-				console.log('There was an error with Twitter:', error);
+				console.log('There was an error with Twitter: ', error);
 			}
 		})
 	  }
 	  // However, if our original search request had an error, we want to print it out here.
 	  else {
-	  	console.log('There was an error with your hashtag search:', error);
+	  	console.log('There was an error with your hashtag search: ', error);
 	  }
 	});
 }
-
+function thwgLatest() {
+	T.get('search/tweets', thwgSearch, function (error, data) {
+	 console.log(error, data);
+	if (!error) {
+	var retweetId = data.statuses[0].id_str;
+	var a = T.post('statuses/update')	
+	T.post('statuses/retweet/' + retweetId, a, function(error, response) {
+		if (response) {
+			console.log('Success! Check your bot, it should have retweeted something.'); 
+			}
+		if (error) {
+				console.log('There was an error with Twitter: ', error);
+			}
+		}
+	}
+	else {
+	       console.log('There was an error with your hashtag search: ', error);
+	
+	}
+	      
+	      
+	
+	
+}
 // Try to retweet something as soon as we run the program...
 retweetLatest();
+thwgLatest();
 // ...and then every hour after that. Time here is in milliseconds, so
 // 1000 ms = 1 second, 1 sec * 60 = 1 min, 1 min * 60 = 1 hour --> 1000 * 60 * 60
 setInterval(retweetLatest, 1000 * 60 * 60);
+setInterval(thwgLatest, 1000 * 60 * 60 * 24 * 7); //weekly

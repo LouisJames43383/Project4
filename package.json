@@ -1,0 +1,25 @@
+{
+  "name": "twitterbot",
+  "version": "1.0.0",
+  "description": "twitter bot that can reverse and randomly capitalize tweets and retweet",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LouisJames43383/Project4.git"
+  },
+  "keywords": [
+    "twitterbot"
+  ],
+  "author": "LouisChan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LouisJames43383/Project4/issues"
+  },
+  "homepage": "https://github.com/LouisJames43383/Project4#readme",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
+}

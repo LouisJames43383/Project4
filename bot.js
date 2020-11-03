@@ -6,6 +6,7 @@ var T = new Twit(require('./config.js'));
 
 // This is the URL of a search for the latest tweets on the '#mediaarts' hashtag.
 var mediaArtsSearch = {q: "#mediaarts", count: 10, result_type: "recent"}; 
+var tenetSearch = {q: "#tenet", count: 10, result_type: "recent"}; 
 
 // This function finds the latest tweet with the #mediaarts hashtag, and retweets it.
 function retweetLatest() {

@@ -36,6 +36,7 @@ function retweetLatest() {
 			if (response) {
 				console.log('Success! Check your bot, it should have retweeted something.')
                 console.log(reverse)
+                //clear the two variables for next-time usage
                 tweetContent = ''
                 reverse = ''
 			}

@@ -17,15 +17,17 @@ function retweetLatest() {
 	  // If our search request to the server had no errors...
 	  if (!error) {
 	  	// ...then we grab the ID of the tweet we want to retweet...
-		var retweetId = data.statuses[0].id_str;
+		var retweetId = data.statuses[0].id_str
 		// ...and then we tell Twitter we want to retweet it!
         // create a string that copies all text from the 1st post
         var tweetContent = ''
-        tweetContent = tweetContent.concat(data.statuses[0].text);
+        for(var k=0; k<data.statuses.length-1; k++){
+            tweetContent = tweetContent.concat(data.statuses[k].text)
+        }
         // using a for loop to reverse all the text and store into a new string
-        var reverse = ''
+        var reverse = '';
         for (var i=tweetContent.length-1; i>=0; i--) {
-            reverse = reverse.concat(tweetContent[i]);
+            reverse = reverse.concat(tweetContent[i])
         }
         // create a post method to post the reversed text with the retweet
         var rP = {

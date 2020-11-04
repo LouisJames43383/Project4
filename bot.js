@@ -21,7 +21,7 @@ function retweetLatest() {
 		// ...and then we tell Twitter we want to retweet it!
         // create a string that copies all text from the 1st post
         var tweetContent = ''
-        for(var k=0; k<data.statuses.length-1; k++){
+        for(var k=0; k<data.statuses.length-1; k++) {
             tweetContent = tweetContent.concat(data.statuses[k].text)
         }
         // using a for loop to reverse all the text and store into a new string

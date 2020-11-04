@@ -21,9 +21,7 @@ function retweetLatest() {
 		// ...and then we tell Twitter we want to retweet it!
         // create a string that copies all text from the 1st post
         var tweetContent = ''
-        for(var k=0; k<data.statuses.length-1; k++) {
-            tweetContent = tweetContent.concat(data.statuses[k].text)
-        }
+        tweetContent = tweetContent.concat(data.statuses[0].text)
         // using a for loop to reverse all the text and store into a new string
         var reverse = '';
         for (var i=tweetContent.length-1; i>=0; i--) {
@@ -33,8 +31,8 @@ function retweetLatest() {
         var rP = {
             status: reverse
         }
-        var a = T.post('statuses/update',rP)
-		T.post('statuses/retweet/' + retweetId, a, function (error, response) {
+        T.post('statuses/update',rP)
+		T.post('statuses/retweet/' + retweetId, function (error, response) {
 			if (response) {
 				console.log('Success! Check your bot, it should have retweeted something.')
                 console.log(reverse)
@@ -60,8 +58,7 @@ function thwgLatest() {
 	 console.log(error, data);
 	if (!error) {
 	var retweetId = data.statuses[0].id_str;
-	var a = T.post('statuses/update')
-	T.post('statuses/retweet/' + retweetId, a, function(error, response) {
+	T.post('statuses/retweet/' + retweetId, function(error, response) {
 		if (response) {
 			console.log('Success! Check your bot, it should have retweeted something.'); 
 			}

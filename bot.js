@@ -77,10 +77,16 @@ function thwgLatest() {
 
 // a method that likes tweets with hashtag tweetbot
 function tweetbotLike() {
-	T.get('search/tweets', tweetbotSearch, function(err, data, response) {
+	T.get('search/tweets', tweetbotSearch, function(error, data) {
+		console.log(error, data);
 	    var likeId = data.statuses[0].id_str;
-	    T.post('favorites/create', {id:likeId}, function(err,data,response) {
-		console.log("just liked a post")
+	    T.post('favorites/create', {id:likeId}, function(error ,response) {
+		    if (response) {
+			console.log("just liked a post")
+		    }
+		    if (error) {
+			console.log('There was an error with Twitter: ', error);
+			}
 	    });
 	    console.log(data);
 	});
